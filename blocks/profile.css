@@ -3,28 +3,27 @@
   padding: 34px 0 20px;
   border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
   max-width: 1280px;
-  height: 190px;
 }
 
 .profile__avatar {
   margin-right: 20px;
   height: 190px;
   width: 190px;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
 .profile__column {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 420px;
-  height: auto;
+  justify-content: flex-start;
+  width: 100%;
   margin: 0;
 }
 
 .profile__name {
   margin: 0 0 12px;
-  width: 420px;
-  height: 32px;
+  max-width: 420px;
   line-height: 32px;
   font-size: 32px;
   font-weight: 500;
@@ -37,9 +36,8 @@
 }
 
 .profile__description {
-  margin-top: -100px;
-  width: 97px;
-  height: 16px;
+  margin: 0 0 114px;
+  max-width: 97px;
   line-height: 16px;
   font-size: 16px;
   font-weight: 500;
@@ -53,8 +51,7 @@
 }
 
 .profile__edit-btn {
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: 0;
   align-items: flex-end;
   justify-content: space-between;
   width: fit-content;
@@ -64,11 +61,18 @@
   background-color: transparent;
   border: none;
   padding: 0 8px;
+  cursor: pointer;
   font-size: 16px;
   font-weight: 500;
   line-height: 16px;
   text-align: center;
   white-space: nowrap;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.profile__edit-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .profile__add-btn {
@@ -82,13 +86,19 @@
   height: 52px;
   border: none;
   text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.profile__add-btn:hover {
+  background-color: #424242;
+  transform: scale(1.05);
 }
 
 @media screen and (max-width: 627px) {
   .profile {
     flex-direction: column;
     max-width: 288px;
-    height: 274px;
     align-items: center;
     text-align: center;
     padding: 20px 0 0;
@@ -103,7 +113,6 @@
   .profile__name {
     font-size: 20px;
     margin: 0 0 6px;
-    max-height: 20px;
     max-width: 288px;
     line-height: 20px;
   }
@@ -111,7 +120,6 @@
   .profile__description {
     margin: 0 0 32px;
     max-width: 288px;
-    max-height: 16px;
   }
 
   .profile__column {
