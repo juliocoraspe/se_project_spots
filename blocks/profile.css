@@ -1,0 +1,133 @@
+.profile {
+  display: flex;
+  padding: 34px 0 20px;
+  border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
+  max-width: 1280px;
+  height: 190px;
+}
+
+.profile__avatar {
+  margin-right: 20px;
+  height: 190px;
+  width: 190px;
+}
+
+.profile__column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 420px;
+  height: auto;
+  margin: 0;
+}
+
+.profile__name {
+  margin: 0 0 12px;
+  width: 420px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 32px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-width: 420px;
+}
+
+.profile__description {
+  margin-top: -100px;
+  width: 97px;
+  height: 16px;
+  line-height: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  opacity: 70%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-width: 420px;
+}
+
+.profile__edit-btn {
+  margin-top: 0;
+  margin-bottom: 0;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: fit-content;
+  height: 16px;
+  gap: 8px;
+  opacity: 0.7;
+  background-color: transparent;
+  border: none;
+  padding: 0 8px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.profile__add-btn {
+  align-items: flex-end;
+  margin-left: auto;
+  margin-top: auto;
+  background-color: #212121;
+  color: white;
+  border-radius: 8px;
+  width: 149px;
+  height: 52px;
+  border: none;
+  text-align: center;
+}
+
+@media screen and (max-width: 627px) {
+  .profile {
+    flex-direction: column;
+    max-width: 288px;
+    height: 274px;
+    align-items: center;
+    text-align: center;
+    padding: 20px 0 0;
+  }
+
+  .profile__avatar {
+    margin: 0 0 12px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile__name {
+    font-size: 20px;
+    margin: 0 0 6px;
+    max-height: 20px;
+    max-width: 288px;
+    line-height: 20px;
+  }
+
+  .profile__description {
+    margin: 0 0 32px;
+    max-width: 288px;
+    max-height: 16px;
+  }
+
+  .profile__column {
+    margin: 0 0 20px;
+    align-items: center;
+  }
+
+  .profile__edit-btn {
+    width: 107.34px;
+    height: 16px;
+  }
+
+  .profile__add-btn {
+    margin: 0;
+    width: 288px;
+    height: 52px;
+    padding: 18px 32px 0 32px;
+  }
+}
