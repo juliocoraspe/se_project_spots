@@ -18,4 +18,4 @@ _Spots website_ is a webpage designed for users to share and explore beautiful m
 ## Deployment
 
 This webpage is deployed to Github Pages:
-[link:] ()
+[link:] (https:juliocoraspe.github.io/se_project_spots)
