@@ -12,7 +12,6 @@
   font-size: 16px;
   line-height: 16px;
   opacity: 70%;
-  margin: 0 668px 0 668px;
-  width: 204px;
-  height: 16px;
+  margin: 0;
+  max-width: 204px;
 }

@@ -38,7 +38,6 @@
 
 .card__like-btn:hover {
   opacity: 100%;
-  transform: scale(1.2);
 }
 
 @media screen and (max-width: 627px) {
@@ -48,14 +47,9 @@
   }
 
   .card__title {
-    font-weight: 500;
     font-size: 16px;
     line-height: 16px;
-    max-width: 95px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    font-family: "Poppins", Arial, Helvetica, sans-serif;
+    max-width: 250px;
   }
 
   .card__like-btn {
