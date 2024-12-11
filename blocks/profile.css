@@ -34,7 +34,7 @@
 }
 
 .profile__description {
-  margin-top: auto;
+  margin: 0;
   line-height: 16px;
   font-size: 16px;
   font-weight: 500;
@@ -48,7 +48,7 @@
 }
 
 .profile__edit-btn {
-  margin: 0;
+  margin-top: auto;
   align-items: flex-end;
   justify-content: space-between;
   width: fit-content;
@@ -57,7 +57,7 @@
   opacity: 0.7;
   background-color: transparent;
   border: none;
-  padding: 0 8px;
+  padding: 0;
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
@@ -96,7 +96,7 @@
     max-width: 288px;
     align-items: center;
     text-align: center;
-    padding: 0 0 20px;
+    padding: 20px 0;
   }
 
   .profile__avatar {
