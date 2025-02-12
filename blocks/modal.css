@@ -38,6 +38,12 @@
   opacity: 40%;
   background-color: #fff;
   border: none;
+  cursor: pointer;
+}
+
+.modal__close-btn:hover {
+  background-color: black;
+  color: white;
 }
 
 .modal__title {
@@ -62,8 +68,12 @@
 .modal__input {
   padding: 16px 12px;
   border-radius: 8px;
-  border: 1px solid;
-  opacity: 40%;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.modal__input:hover {
+  border-color: black;
+  cursor: pointer;
 }
 
 .modal__submit-btn {
@@ -73,6 +83,10 @@
   background-color: #212121;
   color: #fcf5e5;
   border: none;
+}
+
+.modal__submit-btn:hover {
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 627px) {
