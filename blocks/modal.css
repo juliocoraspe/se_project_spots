@@ -108,9 +108,20 @@
   border: 1px solid rgba(0, 0, 0, 0.4);
 }
 
+.modal__input_Type_error {
+  border: 1px solid rgba(225, 0, 0, 0.6);
+}
+
 .modal__input:hover {
   border-color: black;
   cursor: pointer;
+}
+
+.modal__error {
+  display: block;
+  color: red;
+  margin-top: 8px;
+  /*to do use correct color and font sizes*/
 }
 
 .modal__submit-btn {
@@ -121,6 +132,10 @@
   color: #fcf5e5;
   border: none;
   cursor: pointer;
+}
+
+.modal__submit-btn-disabled {
+  opacity: 50%;
 }
 
 .modal__submit-btn:hover {
