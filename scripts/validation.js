@@ -3,33 +3,38 @@ const settings = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-btn",
   inactiveButtonClass: "modal__submit-btn-disabled",
-  inputErrorClass: "add-card-name-input-error",
-  errorClass: "modal__error_visible",
+  inputErrorClass: "modal__input_Type_error",
+  errorClass: "modal__error",
 };
 
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, config) => {
   const errorMessageID = inputElement.id + "-error";
   const errorMessageElement = formElement.querySelector("#" + errorMessageID);
   errorMessageElement.textContent = errorMessage;
-  inputElement.classList.add("add-card-name-input-error");
+  inputElement.classList.add(config.inputErrorClass);
 };
 
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, config) => {
   const errorMessageID = inputElement.id + "-error";
   const errorMessageElement = formElement.querySelector("#" + errorMessageID);
   errorMessageElement.textContent = "";
-  inputElement.classList.remove("add-card-name-input-error");
+  inputElement.classList.remove(config.inputErrorClass);
 };
 
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, config) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(
+      formElement,
+      inputElement,
+      inputElement.validationMessage,
+      config
+    );
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, config);
   }
 };
 
-const hasInvalidInput = (inputList) => {
+const hasInvalidInput = (inputList, config) => {
   return inputList.some((input) => {
     return !input.validity.valid;
   });
@@ -49,10 +54,12 @@ const disableButton = (buttonElement, config) => {
   buttonElement.classList.add(config.inactiveButtonClass);
 };
 
-const resetValidation = (formElement, inputList) => {
+const resetValidation = (formElement, inputList, config) => {
   inputList.forEach((input) => {
-    hideInputError(formElement, input);
+    hideInputError(formElement, input, config);
   });
+  const buttonElement = formElement.querySelector(config.submitButtonSelector);
+  disableButton(buttonElement, config);
 };
 
 const setEventListeners = (formElement, config) => {
