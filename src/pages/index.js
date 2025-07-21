@@ -112,6 +112,30 @@ const cardsList = document.querySelector(".cards__list");
 
 let selectedCard, selectedCardId;
 
+function renderLoading(
+  isLoading,
+  button,
+  buttonText = "Save",
+  loadingText = "Saving..."
+) {
+  button.textContent = isLoading ? loadingText : buttonText;
+}
+
+function handleSubmit(request, evt, loadingText = "Saving...") {
+  evt.preventDefault();
+
+  const submitButton = evt.submitter;
+  const initialText = submitButton.textContent;
+
+  renderLoading(true, submitButton, initialText, loadingText);
+
+  request()
+    .then(() => {
+      evt.target.reset();
+    })
+    .catch(console.error);
+}
+
 function getCardElement(data) {
   const cardElement = cardTemplate.content
     .querySelector(".card")
@@ -188,77 +212,54 @@ function closeModal(modal) {
 }
 
 function handleEditFormSubmit(evt) {
-  evt.preventDefault();
-  const submitBtn = evt.submitter;
-  submitBtn.textContent = "Saving...";
-  setButtonText(submitBtn, true, "Save", "Saving...");
+  function makeRequest() {
+    return api
+      .editUserInfo({
+        name: editModalNameInput.value,
+        about: editModalDescriptionInput.value,
+      })
+      .then((data) => {
+        profileName.textContent = data.name;
+        profileDescription.textContent = data.about;
+        closeModal(editModal);
+      });
+  }
 
-  api
-    .editUserInfo({
-      name: editModalNameInput.value,
-      about: editModalDescriptionInput.value,
-    })
-    .then((data) => {
-      profileName.textContent = data.name;
-      profileDescription.textContent = data.about;
-      closeModal(editModal);
-    })
-    .catch(console.error)
-    .finally(() => {
-      //todo - call setButtonText instead
-      setButtonText(submitBtn, false, "Save", "Saving...");
-    });
+  handleSubmit(makeRequest, evt);
 }
 
 //todo implement loading ttext for all other form  submisiions
 
 function handleAddCardSubmit(evt) {
-  evt.preventDefault();
+  function makeRequest() {
+    const inputValues = {
+      name: cardNameInput.value,
+      link: cardLinkInput.value,
+    };
 
-  const submitBtn = evt.submitter;
-  setButtonText(submitBtn, true, "Create", "Creating...");
-  const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
-  api
-    .addNewCard(inputValues)
-    .then((data) => {
+    return api.addNewCard(inputValues).then((data) => {
       const cardElement = getCardElement(data);
       cardsList.prepend(cardElement);
       closeModal(cardModal);
       cardForm.reset();
-      resetValidation(
-        cardForm,
-        [cardNameInput, cardLinkInput],
-        validationConfig
-      );
       disableButton(cardSubmitButton, validationConfig);
-    })
-    .catch((err) => {
-      console.error("Error:", err);
-    })
-    .finally(() => {
-      if (submitBtn) {
-        setButtonText(submitBtn, false, "Create", "Creating...");
-      }
     });
+  }
+
+  handleSubmit(makeRequest, evt, "Creating...");
 }
 
 function handleAvatarSubmit(evt) {
-  evt.preventDefault();
+  function makeRequest() {
+    const newAvatar = { avatar: avatarInput.value };
 
-  const submitBtn = evt.submitter;
-  setButtonText(submitBtn, true, "Save", "Saving...");
-  const newAvatar = avatarInput.value;
-
-  api
-    .editAvatarInfo(newAvatar)
-    .then((data) => {
+    return api.editAvatarInfo(newAvatar).then((data) => {
       profileAvatar.src = data.avatar;
       closeModal(avatarModal);
-    })
-    .catch(console.error)
-    .finally(() => {
-      setButtonText(submitBtn, false, "Save", "Saving...");
     });
+  }
+
+  handleSubmit(makeRequest, evt);
 }
 
 function handleDeleteCard(cardElement, cardId) {
@@ -268,19 +269,14 @@ function handleDeleteCard(cardElement, cardId) {
 }
 
 function handleDeleteSubmit(evt) {
-  evt.preventDefault();
-  const submitBtn = evt.submitter;
-  setButtonText(submitBtn, true, "Delete", "Deleting...");
-  api
-    .deleteCard(selectedCardId)
-    .then(() => {
+  function makeRequest() {
+    return api.deleteCard(selectedCardId).then(() => {
       selectedCard.remove();
       closeModal(deleteModal);
-    })
-    .catch(console.error)
-    .finally(() => {
-      setButtonText(submitBtn, false, "Delete", "Deleting...");
     });
+  }
+
+  handleSubmit(makeRequest, evt, "Deleting...");
 }
 
 function handleCancelDelete() {
