@@ -133,7 +133,10 @@ function handleSubmit(request, evt, loadingText = "Saving...") {
     .then(() => {
       evt.target.reset();
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      renderLoading(false, submitButton, initialText);
+    });
 }
 
 function getCardElement(data) {
